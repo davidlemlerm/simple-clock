@@ -1,23 +1,26 @@
 import './styles.css';
-import { padStart } from 'lodash';
+
+function zeroPad(dateNumber) {
+	if (dateNumber === 0) {
+		return '00';
+	} else if (dateNumber < 10) {
+		return `0${dateNumber}`;
+	} else {
+		return dateNumber;
+	}
+}
 
 function updateClock() {
-	let date = new Date();
+	const date = new Date();
 	let hour = date.getHours();
-	let amPM;
-	if (hour > 12) {
-		amPM = 'PM';
-	} else {
-		amPM = 'AM';
-	}
+	const amPM = hour > 12 ? 'PM' : 'AM';
 	if (hour > 12) {
 		hour -= 12;
 	}
-	let clockText = `${padStart(hour, 2, '0')}:${padStart(
-		date.getMinutes(),
-		2,
-		'0',
-	)}:${padStart(date.getSeconds(), 2, '0')} ${amPM}`;
+	hour = zeroPad(hour);
+	const minute = zeroPad(date.getMinutes());
+	const second = zeroPad(date.getSeconds());
+	let clockText = `${hour}:${minute}:${second} ${amPM}`;
 	let clockElement = document.getElementById('clock');
 	clockElement.textContent = clockText;
 }
