@@ -11,6 +11,7 @@ function zeroPad(dateNumber) {
 }
 
 function updateClock() {
+	requestAnimationFrame(updateClock);
 	const date = new Date();
 	let hour = date.getHours();
 	const amPM = hour > 12 ? 'PM' : 'AM';
@@ -24,7 +25,7 @@ function updateClock() {
 	let clockElement = document.getElementById('clock');
 	clockElement.textContent = clockText;
 }
-setInterval(updateClock, 100);
+updateClock();
 
 if (document.fullscreenEnabled) {
 	let cover = document.getElementById('cover');
