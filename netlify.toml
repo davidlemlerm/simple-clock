@@ -1,9 +1,18 @@
 [[headers]]
     for = "/*"
     [headers.values]
+        cache-control = "no-cache"
         content-security-policy = "base-uri 'none'; default-src 'self'; object-src 'none'; upgrade-insecure-requests;"
         cross-origin-embedder-policy = "require-corp"
         cross-origin-opener-policy = "same-origin"
         cross-origin-resource-policy = "same-origin"
         x-content-type-options = "nosniff"
         x-frame-options = "deny"
+[[headers]]
+    for = "/*.css"
+    [headers.values]
+        cache-control = "max-age=31536000, public, immutable"
+[[headers]]
+    for = "/*.js"
+    [headers.values]
+        cache-control = "max-age=31536000, public, immutable"
